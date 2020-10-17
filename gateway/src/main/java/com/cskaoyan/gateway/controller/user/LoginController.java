@@ -53,7 +53,6 @@ public class LoginController {
         UserLoginRequest userLoginRequest = new UserLoginRequest(userName, userPwd);
         UserLoginResponse loginResponse = loginService.login(userLoginRequest);
         if(loginResponse.getCode().equals(SysRetCodeConstants.SUCCESS.getCode())){
-            //todo 添加cookie
             Cookie cookie = CookieUtil.genCookieWithDomain(ACCESS_TOKEN, loginResponse.getToken(), 99999, "localhost");
             CookieUtil.setCookie(response, cookie);
             return new ResponseUtil<>().setData(loginResponse);

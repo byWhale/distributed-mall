@@ -21,9 +21,11 @@ public class LoginOutController {
     public ResponseData loginOut(HttpServletRequest request, HttpServletResponse response){
         Cookie[] cookies = request.getCookies();
         HttpSession session = request.getSession();
-        //销毁session：
-        session.invalidate();
         //清除cookie：
+//        for (Cookie cookieToDeleted : cookies) {
+//            Cookie cookie = CookieUtil.genCookieWithDomain(cookieToDeleted.getName(), null, 0, "localhost");
+//            response.addCookie(cookie);
+//        }
         Cookie cookie = CookieUtil.genCookieWithDomain(ACCESS_TOKEN, null, 0, "localhost");
         response.addCookie(cookie);
         return new ResponseUtil<>().setData(null);
