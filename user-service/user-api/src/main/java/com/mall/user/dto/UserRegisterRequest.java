@@ -3,7 +3,9 @@ package com.mall.user.dto;
 import com.mall.commons.result.AbstractRequest;
 import com.mall.commons.tool.exception.ValidateException;
 import com.mall.user.constants.SysRetCodeConstants;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -11,6 +13,8 @@ import org.apache.commons.lang3.StringUtils;
  * create-date: 2019/7/23-12:48
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserRegisterRequest extends AbstractRequest {
 
     private String userName;
