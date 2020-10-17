@@ -1,6 +1,8 @@
 package com.mall.user.dal.entitys;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Column;
@@ -11,6 +13,8 @@ import java.util.Date;
 @Table(name = "tb_user_verify")
 @Data
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserVerify {
     @Id
     private Long id;

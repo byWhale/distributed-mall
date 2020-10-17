@@ -6,12 +6,13 @@ import lombok.ToString;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "tb_member")
 @Data
 @ToString
-public class Member {
+public class Member{
     @Id
     private Long id;
 

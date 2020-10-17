@@ -43,7 +43,8 @@ public class KaptchaServiceImpl implements IKaptchaService {
             RBucket rBucket=redissonClient.getBucket(KAPTCHA_UUID+uuid);
             rBucket.set(capText.getCode());
             log.info("产生的验证码:{},uuid:{}",capText.getCode(),uuid);
-            rBucket.expire(120, TimeUnit.SECONDS);
+            //todo 之前是120
+            rBucket.expire(999999, TimeUnit.SECONDS);
             response.setImageCode(capText.getImg());
             response.setUuid(uuid);
             response.setCode(SysRetCodeConstants.SUCCESS.getCode());
