@@ -1,6 +1,9 @@
 package com.mall.shopping;
 
 import com.mall.shopping.dto.HomePageResponse;
+import com.mall.shopping.dto.PanelContentDto;
+
+import java.util.List;
 
 /**
  *  ciggar
@@ -9,4 +12,5 @@ import com.mall.shopping.dto.HomePageResponse;
 public interface IHomeService {
 
     HomePageResponse homepage();
+    List<PanelContentDto> getNavigation();
 }
