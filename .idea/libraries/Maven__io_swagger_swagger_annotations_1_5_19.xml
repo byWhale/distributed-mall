@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: io.swagger:swagger-annotations:1.5.19">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/io/swagger/swagger-annotations/1.5.19/swagger-annotations-1.5.19.jar!/" />
+      <root url="jar://E:/Develop/Java/Tools/repository/io/swagger/swagger-annotations/1.5.19/swagger-annotations-1.5.19.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/io/swagger/swagger-annotations/1.5.19/swagger-annotations-1.5.19-javadoc.jar!/" />
+      <root url="jar://E:/Develop/Java/Tools/repository/io/swagger/swagger-annotations/1.5.19/swagger-annotations-1.5.19-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/io/swagger/swagger-annotations/1.5.19/swagger-annotations-1.5.19-sources.jar!/" />
+      <root url="jar://E:/Develop/Java/Tools/repository/io/swagger/swagger-annotations/1.5.19/swagger-annotations-1.5.19-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

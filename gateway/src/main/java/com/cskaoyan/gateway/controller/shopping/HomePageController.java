@@ -34,15 +34,15 @@ public class HomePageController {
         return  new ResponseUtil<>().setData(homepage.getPanelContentItemDtos());
     }
     //导航栏显示
-   @GetMapping("/categories")
+   @GetMapping("/navigation")
     public ResponseData navigation(){
        List<PanelContentDto> result = iHomeService.getNavigation();
        ResponseData responseData = new ResponseUtil().setData(result);
        return responseData;
    }
    //查看商品详情
-    @GetMapping("/product/{id}")
-    public ResponseData product(@PathVariable long id){
-        return null;
-    }
+//    @GetMapping("/product/{id}")
+//    public ResponseData product(@PathVariable long id){
+//        return null;
+//    }
 }
