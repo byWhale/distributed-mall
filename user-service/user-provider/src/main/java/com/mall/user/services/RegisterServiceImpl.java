@@ -15,6 +15,7 @@ import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.DigestUtils;
 import tk.mybatis.mapper.entity.Example;
@@ -25,6 +26,7 @@ import java.util.UUID;
 
 @Slf4j
 @Service
+@Transactional
 public class RegisterServiceImpl implements RegisterService {
 
     @Autowired
@@ -49,6 +51,7 @@ public class RegisterServiceImpl implements RegisterService {
             return response;
         }
 
+        //向用户表中插入一条记录
         Member member = new Member();
         member.setUsername(userRegisterRequest.getUserName());
         member.setEmail(userRegisterRequest.getEmail());
@@ -80,9 +83,8 @@ public class RegisterServiceImpl implements RegisterService {
             return response;
         }
 
-        //todo 发送邮件
-        sendEmail(uuid, userRegisterRequest);
-
+        //todo 发送邮箱 消息队列
+//        sendEmail(uuid, userRegisterRequest);
 
         log.info("用户注册成功，注册参数 request:{}", JSON.toJSONString(userRegisterRequest));
         response.setCode(SysRetCodeConstants.SUCCESS.getCode());

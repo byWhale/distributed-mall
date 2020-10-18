@@ -49,13 +49,13 @@ public class LoginServiceImpl implements LoginService {
             loginResponse.setMsg(SysRetCodeConstants.USERORPASSWORD_ERRROR.getMessage());
             return loginResponse;
         }
-        //是否验证过
+//        todo 是否验证过 等消息队列做好再取消注释吧
 //        if(members.get(0).getIsVerified().equals("N")){
 //            loginResponse.setCode(SysRetCodeConstants.USER_ISVERFIED_ERROR.getCode());
 //            loginResponse.setMsg(SysRetCodeConstants.USER_ISVERFIED_ERROR.getMessage());
 //            return loginResponse;
 //        }
-        //登陆成功，生成token
+//        登陆成功，生成token
         loginResponse = memberConverter.member2LoginRes(members.get(0));
         loginResponse.setCode(SysRetCodeConstants.SUCCESS.getCode());
         loginResponse.setMsg(SysRetCodeConstants.SUCCESS.getMessage());

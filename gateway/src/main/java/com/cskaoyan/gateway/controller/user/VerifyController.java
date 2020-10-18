@@ -22,13 +22,10 @@ public class VerifyController {
     IVerifyService verifyService;
 
     @GetMapping("/user/verify")
-    public ResponseData verify( Map map){
-        String uuid = (String) map.get("uuid");
-        String username = (String) map.get("username");
+    public ResponseData verify(String uid, String username){
         UserVerifyRequest userVerifyRequest = new UserVerifyRequest();
         userVerifyRequest.setUserName(username);
-        userVerifyRequest.setUuid(uuid);
-
+        userVerifyRequest.setUuid(uid);
 
         UserVerifyResponse userVerifyResponse = verifyService.verify(userVerifyRequest);
         if (!userVerifyResponse.getCode().equals(SysRetCodeConstants.SUCCESS.getCode())){
