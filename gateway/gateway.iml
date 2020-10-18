@@ -32,6 +32,20 @@
     <orderEntry type="module" module-name="comment-api" />
     <orderEntry type="module" module-name="user-sdk" />
     <orderEntry type="module" module-name="user-api" />
+    <orderEntry type="module" module-name="shopping-api" />
+    <orderEntry type="module" module-name="commons-tool" />
+    <orderEntry type="module" module-name="commons-core" />
+    <orderEntry type="module" module-name="order-api" />
+    <orderEntry type="module" module-name="comment-api" />
+    <orderEntry type="module" module-name="user-sdk" />
+    <orderEntry type="module" module-name="user-api" />
+    <orderEntry type="module" module-name="shopping-api" />
+    <orderEntry type="module" module-name="commons-tool" />
+    <orderEntry type="module" module-name="commons-core" />
+    <orderEntry type="module" module-name="order-api" />
+    <orderEntry type="module" module-name="comment-api" />
+    <orderEntry type="module" module-name="user-sdk" />
+    <orderEntry type="module" module-name="user-api" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:2.1.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.1.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.1.6.RELEASE" level="project" />
