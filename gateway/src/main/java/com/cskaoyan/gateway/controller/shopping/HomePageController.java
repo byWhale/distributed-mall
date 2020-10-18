@@ -40,9 +40,9 @@ public class HomePageController {
        ResponseData responseData = new ResponseUtil().setData(result);
        return responseData;
    }
-   //查看商品详情
-//    @GetMapping("/product/{id}")
-//    public ResponseData product(@PathVariable long id){
-//        return null;
-//    }
+   /*//查看商品详情
+    @GetMapping("/product/{id}")
+    public ResponseData product(@PathVariable long id){
+        return null;
+    }*/
 }
