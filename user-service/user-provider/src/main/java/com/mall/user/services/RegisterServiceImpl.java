@@ -84,7 +84,7 @@ public class RegisterServiceImpl implements RegisterService {
         }
 
         //todo 发送邮箱 消息队列
-//        sendEmail(uuid, userRegisterRequest);
+        sendEmail(uuid, userRegisterRequest);
 
         log.info("用户注册成功，注册参数 request:{}", JSON.toJSONString(userRegisterRequest));
         response.setCode(SysRetCodeConstants.SUCCESS.getCode());
