@@ -6,23 +6,51 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+<<<<<<< HEAD
+        <module name="commons-tool" />
+=======
         <module name="comment-api" />
         <module name="comment-provider" />
         <module name="commons-core" />
         <module name="commons-lock" />
+<<<<<<< HEAD
         <module name="commons-mq" />
         <module name="commons-tool" />
         <module name="gateway" />
         <module name="order-api" />
+=======
+>>>>>>> 5dbe79ff6abf0c5ef47908492e4030cd8bcdd509
+>>>>>>> a7c45cef4f36c775f67121661eb4b5aed3948b61
         <module name="order-provider" />
         <module name="shopping-api" />
         <module name="shopping-provider" />
         <module name="user-api" />
         <module name="user-provider" />
+<<<<<<< HEAD
         <module name="user-sdk" />
+=======
+        <module name="commons-core" />
+        <module name="gateway" />
+        <module name="gateway" />
+        <module name="commons-core" />
+        <module name="shopping-provider" />
+<<<<<<< HEAD
+        <module name="user-sdk" />
+        <module name="comment-api" />
+        <module name="user-provider" />
+        <module name="commons-mq" />
+        <module name="comment-provider" />
+        <module name="shopping-api" />
+        <module name="commons-lock" />
+        <module name="user-api" />
+        <module name="order-api" />
+=======
+        <module name="commons-tool" />
+>>>>>>> 5dbe79ff6abf0c5ef47908492e4030cd8bcdd509
+>>>>>>> a7c45cef4f36c775f67121661eb4b5aed3948b61
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8">
       <module name="comment-api" target="1.8" />
       <module name="comment-provider" target="1.8" />
       <module name="comment-service" target="1.8" />
