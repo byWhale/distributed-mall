@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
  *
  */
 
-@ComponentScan(basePackages = "com.cskaoyan.gateway")
+@ComponentScan(basePackages = {"com.cskaoyan.gateway.controller","com.cskaoyan.gateway.controller"})
 @SpringBootApplication
 public class GatewayApplication {
 

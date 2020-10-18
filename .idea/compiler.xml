@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="commons-tool" />
         <module name="order-provider" />
         <module name="gateway" />
         <module name="commons-core" />
@@ -13,7 +14,6 @@
         <module name="user-sdk" />
         <module name="comment-api" />
         <module name="user-provider" />
-        <module name="commons-tool" />
         <module name="commons-mq" />
         <module name="comment-provider" />
         <module name="shopping-api" />
@@ -22,7 +22,7 @@
         <module name="order-api" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8">
       <module name="comment-api" target="1.8" />
       <module name="comment-provider" target="1.8" />
       <module name="comment-service" target="1.8" />
@@ -35,14 +35,14 @@
       <module name="mall-parent" target="1.8" />
       <module name="order-api" target="1.8" />
       <module name="order-provider" target="1.8" />
-      <module name="order-services" target="1.5" />
+      <module name="order-services" target="1.8" />
       <module name="shopping-api" target="1.8" />
       <module name="shopping-provider" target="1.8" />
       <module name="shopping-service" target="1.8" />
       <module name="user-api" target="1.8" />
       <module name="user-provider" target="1.8" />
       <module name="user-sdk" target="1.8" />
-      <module name="user-service" target="1.5" />
+      <module name="user-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
