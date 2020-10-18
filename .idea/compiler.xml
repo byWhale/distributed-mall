@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="commons-tool" />
         <module name="order-provider" />
         <module name="gateway" />
         <module name="commons-core" />
@@ -13,7 +14,6 @@
         <module name="user-sdk" />
         <module name="comment-api" />
         <module name="user-provider" />
-        <module name="commons-tool" />
         <module name="commons-mq" />
         <module name="comment-provider" />
         <module name="shopping-api" />

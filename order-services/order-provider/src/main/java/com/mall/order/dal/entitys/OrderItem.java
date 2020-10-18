@@ -7,6 +7,7 @@ import lombok.Data;
 
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -104,5 +105,9 @@ public class OrderItem {
      * 库存锁定状态 1库存已锁定 2库存已释放 3-库存减扣成功
      */
     private Integer status;
+
+    private Date createTime;
+
+    private Date updateTime;
 
 }

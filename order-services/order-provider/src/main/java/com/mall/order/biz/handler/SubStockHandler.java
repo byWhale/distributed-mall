@@ -39,7 +39,31 @@ public class SubStockHandler extends AbstractTransHandler {
 	@Transactional
 	public boolean handle(TransHandlerContext context) {
 
+		CreateOrderContext createOrderContext = (CreateOrderContext) context;
+		List<CartProductDto> cartProductDtoList = createOrderContext.getCartProductDtoList();
 
+		//检查库存
+		List<CartProductDto> dtoList = createOrderContext.getCartProductDtoList();
+		List<Long> productIds = createOrderContext.getBuyProductIds();
+
+		List<Stock> stockList = stockMapper.findStocksForUpdate(productIds);
+		if (CollectionUtils.isEmpty(stockList)){
+			throw new BizException("查询不到所有库存");
+		}
+		if (stockList.size() != productIds.size()){
+			throw new BizException("部分库存查询无果");
+		}
+
+		//扣除库存
+		for (CartProductDto cartProductDto : cartProductDtoList) {
+
+			Stock stock = new Stock();
+			stock.setItemId(cartProductDto.getProductId());
+			stock.setLockCount(cartProductDto.getProductNum().intValue());
+			stock.setStockCount(-cartProductDto.getProductNum());
+
+			stockMapper.updateStock(stock);
+		}
         return true;
 	}
 }

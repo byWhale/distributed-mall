@@ -22,9 +22,9 @@
             <property name="useInformationSchema" value="true"/>
         </jdbcConnection>-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3316/csmall"
+                        connectionURL="jdbc:mysql://localhost:3306/csmall"
                         userId="root"
-                        password="123456">
+                        password="root">
             <property name="useInformationSchema" value="true"/>
         </jdbcConnection>
 

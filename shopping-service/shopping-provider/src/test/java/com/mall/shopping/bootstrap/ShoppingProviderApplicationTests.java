@@ -23,7 +23,7 @@ public class ShoppingProviderApplicationTests {
     @Test
     public void testCartService() throws IOException {
         AddCartRequest request = new AddCartRequest();
-        request.setItemId(100023501L);
+        request.setProductId(100023501L);
         request.setUserId(123L);
         cartService.addToCart(request);
         System.in.read();

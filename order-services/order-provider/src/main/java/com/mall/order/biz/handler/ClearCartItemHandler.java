@@ -20,6 +20,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ClearCartItemHandler extends AbstractTransHandler {
 
+    @Reference(check = false)
+    ICartService iCartService;
 
     //是否采用异步方式执行
     @Override
@@ -29,6 +31,13 @@ public class ClearCartItemHandler extends AbstractTransHandler {
 
     @Override
     public boolean handle(TransHandlerContext context) {
+
+        CreateOrderContext createOrderContext = (CreateOrderContext) context;
+        ClearCartItemRequest clearCartItemRequest = new ClearCartItemRequest();
+        clearCartItemRequest.setProductIds(createOrderContext.getBuyProductIds());
+        clearCartItemRequest.setUserId(createOrderContext.getUserId());
+        iCartService.clearCartItemByUserID(clearCartItemRequest);
+
         return true;
     }
 }

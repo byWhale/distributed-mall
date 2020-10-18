@@ -14,17 +14,17 @@ import java.math.BigDecimal;
 @Data
 public class CartProductDto implements Serializable{
 
-    private Long productId;
+    private Long productId = 100057401L;
 
-    private BigDecimal salePrice;
+    private BigDecimal salePrice = new BigDecimal(149);
 
-    private Long productNum;
+    private Long productNum = 1L;
 
-    private Long limitNum;
+    private Long limitNum = 100L;
 
-    private String checked;
+    private String checked = "true";
 
-    private String productName;
+    private String productName = "Smartisan T恤 迪特拉姆斯";
 
-    private String productImg;
+    private String productImg = "https://resource.smartisan.com/resource/005c65324724692f7c9ba2fc7738db13.png";
 }
