@@ -12,11 +12,11 @@ import lombok.Data;
 @Data
 public class DeleteCartItemRequest extends AbstractRequest{
     private Long userId;
-    private Long itemId;
+    private Long productId;
 
     @Override
     public void requestCheck() {
-        if(userId==null||itemId==null){
+        if(userId==null||productId==null){
             throw new ValidateException(ShoppingRetCode.REQUISITE_PARAMETER_NOT_EXIST.getCode(),ShoppingRetCode.REQUISITE_PARAMETER_NOT_EXIST.getMessage());
         }
     }
