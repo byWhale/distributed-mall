@@ -6,11 +6,26 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+<<<<<<< HEAD
         <module name="commons-tool" />
+=======
+        <module name="comment-api" />
+        <module name="order-api" />
+        <module name="comment-provider" />
+        <module name="commons-mq" />
+        <module name="commons-lock" />
+>>>>>>> 5dbe79ff6abf0c5ef47908492e4030cd8bcdd509
         <module name="order-provider" />
+        <module name="shopping-api" />
+        <module name="user-api" />
+        <module name="user-sdk" />
+        <module name="user-provider" />
+        <module name="commons-core" />
+        <module name="gateway" />
         <module name="gateway" />
         <module name="commons-core" />
         <module name="shopping-provider" />
+<<<<<<< HEAD
         <module name="user-sdk" />
         <module name="comment-api" />
         <module name="user-provider" />
@@ -20,6 +35,9 @@
         <module name="commons-lock" />
         <module name="user-api" />
         <module name="order-api" />
+=======
+        <module name="commons-tool" />
+>>>>>>> 5dbe79ff6abf0c5ef47908492e4030cd8bcdd509
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
