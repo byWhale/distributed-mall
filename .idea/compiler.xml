@@ -16,8 +16,13 @@
         <module name="user-api" />
         <module name="user-sdk" />
         <module name="user-provider" />
+<<<<<<< HEAD
         <module name="commons-core" />
         <module name="gateway" />
+=======
+        <module name="gateway" />
+        <module name="commons-core" />
+>>>>>>> acaca896e467f6172541d34e6b5d0449491a69d2
         <module name="shopping-provider" />
         <module name="commons-tool" />
       </profile>
