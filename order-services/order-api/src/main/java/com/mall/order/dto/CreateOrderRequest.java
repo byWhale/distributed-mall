@@ -10,6 +10,8 @@ import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,19 +21,19 @@ import java.util.List;
 @Data
 public class CreateOrderRequest extends AbstractRequest{
 
-    private Long userId;
+    private Long userId = 62L;
 
-    private Long addressId;
+    private Long addressId = 5L;
 
-    private String tel;
+    private String tel = "18782059038";
 
-    private String userName;
+    private String userName = "admin";
 
-    private String streetName;
+    private String streetName = "上海青浦区汇联路";
 
-    private BigDecimal orderTotal;
+    private BigDecimal orderTotal = new BigDecimal(149);
 
-    List<CartProductDto> cartProductDtoList;//购物车中的商品列表
+    List<CartProductDto> cartProductDtoList = new ArrayList<CartProductDto>(){{add(new CartProductDto());}};//购物车中的商品列表
 
     private String uniqueKey; //业务唯一id
 
