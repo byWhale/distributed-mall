@@ -46,7 +46,10 @@ public class ProductController {
         if (!response.getCode().equals(ShoppingRetCode.SUCCESS.getCode())){
             return new ResponseUtil().setErrorMsg(response.getMsg());
         }
-        return new ResponseUtil().setData(response);
+        AllProductResponseVO allProductResponseVO = new AllProductResponseVO();
+        allProductResponseVO.setData(response.getProductDtoList());
+        allProductResponseVO.setTotal(response.getTotal());
+        return new ResponseUtil().setData(allProductResponseVO);
     }
 
     @GetMapping("recommend")
