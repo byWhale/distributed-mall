@@ -124,8 +124,8 @@ public class CartServiceImpl implements ICartService {
         String userIdRedis = "cart_userId_"+userId;
         RMap<Long,CartProductDto> map = redissonClient.getMap(userIdRedis);
         for (Map.Entry<Long, CartProductDto> entry : map.entrySet()) {
-            if (entry.getValue().getChecked().equals(false)){
-                map.fastRemove(entry.getValue().getProductId());
+            if (!entry.getValue().getChecked().equals("false")){
+                map.remove(entry.getValue().getProductId());
             }
         }
         deleteSelectedCartItemResponse.setCode(ShoppingRetCode.SUCCESS.getCode());
