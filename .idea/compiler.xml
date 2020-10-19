@@ -35,14 +35,14 @@
       <module name="mall-parent" target="1.8" />
       <module name="order-api" target="1.8" />
       <module name="order-provider" target="1.8" />
-      <module name="order-services" target="1.8" />
+      <module name="order-services" target="1.5" />
       <module name="shopping-api" target="1.8" />
       <module name="shopping-provider" target="1.8" />
       <module name="shopping-service" target="1.8" />
       <module name="user-api" target="1.8" />
       <module name="user-provider" target="1.8" />
       <module name="user-sdk" target="1.8" />
-      <module name="user-service" target="1.8" />
+      <module name="user-service" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

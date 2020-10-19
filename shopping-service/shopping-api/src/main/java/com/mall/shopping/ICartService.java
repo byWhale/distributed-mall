@@ -1,7 +1,6 @@
 package com.mall.shopping;
 
 import com.mall.shopping.dto.*;
-import com.mall.shopping.dto.*;
 
 /**
  *  ciggar
@@ -62,4 +61,5 @@ public interface ICartService {
     ClearCartItemResponse clearCartItemByUserID(ClearCartItemRequest request);
 
 
+    DeleteSelectedCartItemResponse deleteSelectedCartItem(DeleteSelectedCartItemRequest deleteSelectedCartItemRequest);
 }
