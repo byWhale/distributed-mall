@@ -12,10 +12,8 @@ import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Component
@@ -79,10 +77,12 @@ public class CartServiceImpl implements ICartService {
         Long userId = request.getUserId();
         Long productId = request.getProductId();
         Long productNum = request.getProductNum();
+        String checked = request.getChecked();
         String userIdRedis = "cart_userId_"+userId;
         RMap<Long,CartProductDto> map = redissonClient.getMap(userIdRedis);
         CartProductDto cartProductDto = map.get(productId);
         cartProductDto.setProductNum(productNum);
+        cartProductDto.setChecked(checked);
         map.put(productId,cartProductDto);
         updateCartNumResponse.setCode(ShoppingRetCode.SUCCESS.getCode());
         updateCartNumResponse.setMsg(ShoppingRetCode.SUCCESS.getMessage());
@@ -115,5 +115,21 @@ public class CartServiceImpl implements ICartService {
     @Override
     public ClearCartItemResponse clearCartItemByUserID(ClearCartItemRequest request) {
         return null;
+    }
+
+    @Override
+    public DeleteSelectedCartItemResponse deleteSelectedCartItem(DeleteSelectedCartItemRequest request) {
+        DeleteSelectedCartItemResponse deleteSelectedCartItemResponse = new DeleteSelectedCartItemResponse();
+        Long userId = request.getId();
+        String userIdRedis = "cart_userId_"+userId;
+        RMap<Long,CartProductDto> map = redissonClient.getMap(userIdRedis);
+        for (Map.Entry<Long, CartProductDto> entry : map.entrySet()) {
+            if (entry.getValue().getChecked().equals(false)){
+                map.fastRemove(entry.getValue().getProductId());
+            }
+        }
+        deleteSelectedCartItemResponse.setCode(ShoppingRetCode.SUCCESS.getCode());
+        deleteSelectedCartItemResponse.setMsg(ShoppingRetCode.SUCCESS.getMessage());
+        return deleteSelectedCartItemResponse;
     }
 }
