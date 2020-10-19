@@ -67,15 +67,15 @@ public class CartController {
         return new ResponseUtil().setErrorMsg(deleteCartItemResponse.getMsg());
     }
 
-    @DeleteMapping("/items/{id}")
-    public ResponseData deleteCart(@PathVariable("id")Long id){
-        DeleteSelectedCartItemRequest deleteSelectedCartItemRequest = new DeleteSelectedCartItemRequest();
-        deleteSelectedCartItemRequest.setId(id);
-        DeleteSelectedCartItemResponse deleteSelectedCartItemResponse = cartService.deleteSelectedCartItem(deleteSelectedCartItemRequest);
-        if (deleteSelectedCartItemResponse.getCode().equals(ShoppingRetCode.SUCCESS.getCode())) {
-            return new ResponseUtil().setData(deleteSelectedCartItemResponse.getMsg());
-        }
-        return new ResponseUtil().setErrorMsg(deleteSelectedCartItemResponse.getMsg());
-    }
+//    @DeleteMapping("/items/{id}")
+//    public ResponseData deleteCart(@PathVariable("id")Long id){
+//        DeleteSelectedCartItemRequest deleteSelectedCartItemRequest = new DeleteSelectedCartItemRequest();
+//        deleteSelectedCartItemRequest.setId(id);
+//        DeleteSelectedCartItemResponse deleteSelectedCartItemResponse = cartService.deleteSelectedCartItem(deleteSelectedCartItemRequest);
+//        if (deleteSelectedCartItemResponse.getCode().equals(ShoppingRetCode.SUCCESS.getCode())) {
+//            return new ResponseUtil().setData(deleteSelectedCartItemResponse.getMsg());
+//        }
+//        return new ResponseUtil().setErrorMsg(deleteSelectedCartItemResponse.getMsg());
+//    }
 
 }
