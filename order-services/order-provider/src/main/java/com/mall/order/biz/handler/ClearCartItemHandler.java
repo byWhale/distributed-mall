@@ -4,12 +4,17 @@ import com.mall.commons.tool.exception.BizException;
 import com.mall.order.biz.context.CreateOrderContext;
 import com.mall.order.biz.context.TransHandlerContext;
 import com.mall.order.constant.OrderRetCode;
+import com.mall.order.dto.CartProductDto;
 import com.mall.shopping.ICartService;
 import com.mall.shopping.dto.ClearCartItemRequest;
 import com.mall.shopping.dto.ClearCartItemResponse;
+import com.mall.shopping.dto.DeleteCartItemRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *  ciggar
@@ -20,7 +25,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ClearCartItemHandler extends AbstractTransHandler {
 
-    @Reference(check = false)
+    @Reference
     ICartService iCartService;
 
     //是否采用异步方式执行
@@ -33,10 +38,14 @@ public class ClearCartItemHandler extends AbstractTransHandler {
     public boolean handle(TransHandlerContext context) {
 
         CreateOrderContext createOrderContext = (CreateOrderContext) context;
-        ClearCartItemRequest clearCartItemRequest = new ClearCartItemRequest();
-        clearCartItemRequest.setProductIds(createOrderContext.getBuyProductIds());
-        clearCartItemRequest.setUserId(createOrderContext.getUserId());
-        iCartService.clearCartItemByUserID(clearCartItemRequest);
+        DeleteCartItemRequest deleteCartItemRequest = new DeleteCartItemRequest();
+        List<CartProductDto> cartProductDtoList = createOrderContext.getCartProductDtoList();
+
+        for (CartProductDto cartProductDto : cartProductDtoList) {
+            deleteCartItemRequest.setProductId(cartProductDto.getProductId());
+            deleteCartItemRequest.setUserId(createOrderContext.getUserId());
+            iCartService.deleteCartItem(deleteCartItemRequest);
+        }
 
         return true;
     }

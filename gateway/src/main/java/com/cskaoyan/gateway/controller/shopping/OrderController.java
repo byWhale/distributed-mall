@@ -9,6 +9,7 @@ import com.mall.order.OrderQueryService;
 import com.mall.order.constant.OrderRetCode;
 import com.mall.order.dto.*;
 import com.mall.user.annotation.Anoymous;
+import com.mall.user.intercepter.TokenIntercepter;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
@@ -23,7 +24,7 @@ import static com.mall.user.intercepter.TokenIntercepter.USER_INFO_KEY;
 @RestController
 @RequestMapping("/shopping")
 @Api(tags = "OrderController", description = "订单控制层")
-@Anoymous
+//@Anoymous
 public class OrderController {
 
     @Reference(timeout = 3000, check = false, retries = 0)
@@ -38,7 +39,7 @@ public class OrderController {
     @PostMapping("order")
     public ResponseData orderCreate(@RequestBody CreateOrderRequest createOrderRequest, HttpServletRequest httpServletRequest) {
 
-        String userInfo = (String) httpServletRequest.getAttribute(USER_INFO_KEY);
+        String userInfo = (String) httpServletRequest.getAttribute(TokenIntercepter.USER_INFO_KEY);
         JSONObject userInfoJson = JSON.parseObject(userInfo);
         Long userId = Long.parseLong(userInfoJson.get("id").toString());
         createOrderRequest.setUserId(userId);
@@ -56,23 +57,18 @@ public class OrderController {
      * 获取当前用户的所有订单
      */
     @GetMapping("order")
-    public ResponseData queryOrders(Integer page, Integer size, String sort, HttpServletRequest httpServletRequest) {
+    public ResponseData queryOrders(Integer page, Integer size, HttpServletRequest httpServletRequest) {
 
-        String userInfo = (String) httpServletRequest.getAttribute(USER_INFO_KEY);
+        String userInfo = (String) httpServletRequest.getAttribute(TokenIntercepter.USER_INFO_KEY);
         JSONObject userInfoJson = JSON.parseObject(userInfo);
         Long userId = Long.parseLong(userInfoJson.get("id").toString());
 
         OrderListRequest orderListRequest = new OrderListRequest();
         orderListRequest.setPage(page);
         orderListRequest.setSize(size);
-        orderListRequest.setSort(sort);
         orderListRequest.setUserId(userId);
 
-        OrderListResponse response = orderQueryService.queryAll(orderListRequest);
-        if (!response.getCode().equals(OrderRetCode.SUCCESS.getCode())) {
-            return new ResponseUtil().setErrorMsg(response.getMsg());
-        }
-
+        OrderListVO response = orderQueryService.queryAll(orderListRequest);
         return new ResponseUtil().setData(response);
 
     }
@@ -83,15 +79,14 @@ public class OrderController {
     @GetMapping("/order/{id}")
     public ResponseData queryOrderDetail(@PathVariable("id") String orderId, HttpServletRequest httpServletRequest) {
 
-        String userInfo = (String) httpServletRequest.getAttribute(USER_INFO_KEY);
+        String userInfo = (String) httpServletRequest.getAttribute(TokenIntercepter.USER_INFO_KEY);
         JSONObject userInfoJson = JSON.parseObject(userInfo);
         Long userId = Long.parseLong(userInfoJson.get("id").toString());
         String userName = (String) userInfoJson.get("username");
 
-        OrderDetailResultResponse response = orderQueryService.queryOrderDetail(orderId, userName, userId);
-        if (!response.getCode().equals(OrderRetCode.SUCCESS.getCode())) {
-            return new ResponseUtil().setErrorMsg(response.getMsg());
-        }
+        OrderDetailResultVO response = orderQueryService.queryOrderDetail(orderId, userName, userId);
+
+        System.out.println(response);
 
         return new ResponseUtil().setData(response);
     }
@@ -104,7 +99,7 @@ public class OrderController {
     @DeleteMapping("/order/{id}")
     public ResponseData deleteOrder(@PathVariable("id") String orderId,HttpServletRequest httpServletRequest) {
 
-        String userInfo = (String) httpServletRequest.getAttribute(USER_INFO_KEY);
+        String userInfo = (String) httpServletRequest.getAttribute(TokenIntercepter.USER_INFO_KEY);
         JSONObject userInfoJson = JSON.parseObject(userInfo);
         Long userId = Long.parseLong(userInfoJson.get("id").toString());
 
@@ -124,13 +119,13 @@ public class OrderController {
      * 取消订单
      *
      */
-    @PutMapping("/cancelOrder")
+    @PostMapping("/cancelOrder")
     public ResponseData cancelOrder(@RequestBody Map<String, String> map, HttpServletRequest httpServletRequest) {
-        String userInfo = (String) httpServletRequest.getAttribute(USER_INFO_KEY);
+        String userInfo = (String) httpServletRequest.getAttribute(TokenIntercepter.USER_INFO_KEY);
         JSONObject userInfoJson = JSON.parseObject(userInfo);
         Long userId = Long.parseLong(userInfoJson.get("id").toString());
 
-        String orderId = map.get("id");
+        String orderId = map.get("orderId");
 
         CancelOrderRequest cancelOrderRequest = new CancelOrderRequest();
         cancelOrderRequest.setOrderId(orderId);
@@ -141,6 +136,6 @@ public class OrderController {
         }
 
         return new ResponseUtil().setData(response);
-
     }
+
 }

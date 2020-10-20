@@ -16,19 +16,19 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- *  ciggar
+ * ciggar
  * create-date: 2019/8/1-下午4:47
- *
  */
 @Slf4j
 @Component
 public class ValidateHandler extends AbstractTransHandler {
 
-    @Reference(check = false)
+    @Reference
     private IMemberService memberService;
 
     /**
      * 验证用户合法性
+     *
      * @return
      */
 
@@ -46,7 +46,7 @@ public class ValidateHandler extends AbstractTransHandler {
         QueryMemberResponse response = memberService.queryMemberById(request);
         if (response.getCode().equals(SysRetCodeConstants.SUCCESS.getCode())) {
             String username = response.getUsername();
-            if (!username.equals(createOrderContext.getUserName())) {
+            if (username == null) {
                 throw new BizException(response.getCode(), response.getMsg());
             }
             createOrderContext.setBuyerNickName(username);

@@ -46,7 +46,7 @@ public class LogisticalHandler extends AbstractTransHandler {
         for (String orderId : orderIdList) {
             //创建order_shipping记录
             OrderShipping orderShipping = new OrderShipping();
-            orderShipping.setOrderId(createOrderContext.getOrderId());
+            orderShipping.setOrderId(orderId);
             orderShipping.setReceiverName(createOrderContext.getUserName());
             orderShipping.setReceiverPhone(createOrderContext.getTel());
             orderShipping.setReceiverAddress(createOrderContext.getStreetName());

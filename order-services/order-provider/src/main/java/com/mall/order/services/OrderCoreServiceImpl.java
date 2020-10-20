@@ -15,6 +15,7 @@ import com.mall.order.dal.persistence.OrderShippingMapper;
 import com.mall.order.dal.persistence.StockMapper;
 import com.mall.order.dto.*;
 import com.mall.order.utils.ExceptionProcessorUtils;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -105,38 +107,40 @@ public class OrderCoreServiceImpl implements OrderCoreService {
 	}
 
 
+	@SneakyThrows
 	@Override
 	public CancelOrderResponse cancelOrder(CancelOrderRequest cancelOrderRequest) {
 
 		CancelOrderResponse response = new CancelOrderResponse();
-		try {
-			//修改库存
-			OrderItem orderItem = orderItemMapper.queryByOrderId(cancelOrderRequest.getOrderId()).get(0);
-			Long goodsId = orderItem.getItemId();
-			Integer num = orderItem.getNum();
 
-			Stock stock = new Stock();
-			stock.setItemId(goodsId);
-			stock.setLockCount(-num);
-			stock.setStockCount(num.longValue());
-			stockMapper.updateStock(stock);
+		//修改库存
+		OrderItem orderItem = orderItemMapper.queryByOrderId(cancelOrderRequest.getOrderId()).get(0);
+		Long goodsId = orderItem.getItemId();
+		Integer num = orderItem.getNum();
 
-			//删除订单
-			DeleteOrderRequest deleteOrderRequest = new DeleteOrderRequest();
-			deleteOrderRequest.setOrderId(cancelOrderRequest.getOrderId());
-			deleteOrder(deleteOrderRequest);
+		Stock stock = new Stock();
+		stock.setItemId(goodsId);
+		stock.setLockCount(-num);
+		stock.setStockCount(num.longValue());
+		stockMapper.updateStock(stock);
 
-			response.setCode(OrderRetCode.SUCCESS.getCode());
-			response.setMsg(OrderRetCode.SUCCESS.getMessage());
-			return response;
+		//修改order_item中订单状态
+		orderItem.setStatus(6);
+		orderItemMapper.updateStockStatus(6,cancelOrderRequest.getOrderId());
 
-		} catch (Exception e) {
-			log.error("OrderCoreServiceImpl.createOrder Occur Exception :" + e);
-			ExceptionProcessorUtils.wrapperHandlerException(response, e);
-		}
+		//修改订单状态、日期
+		Order order = orderMapper.selectByPrimaryKey(cancelOrderRequest.getOrderId());
+		order.setStatus(6);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+		String date = simpleDateFormat.format(new Date());
+		Date updateTime = simpleDateFormat.parse(date);
+		order.setUpdateTime(updateTime);
+		order.setCloseTime(updateTime);
+		orderMapper.updateByPrimaryKey(order);
 
-		response.setCode(OrderRetCode.PIPELINE_RUN_EXCEPTION.getCode());
-		response.setMsg(OrderRetCode.PIPELINE_RUN_EXCEPTION.getMessage());
+
+		response.setCode(OrderRetCode.SUCCESS.getCode());
+		response.setMsg(OrderRetCode.SUCCESS.getMessage());
 		return response;
 	}
 }

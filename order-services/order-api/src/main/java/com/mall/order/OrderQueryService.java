@@ -7,7 +7,7 @@ import com.mall.order.dto.*;
  * create-date: 2019/7/30-上午10:01
  */
 public interface OrderQueryService {
-    OrderListResponse queryAll(OrderListRequest orderListRequest);
+    OrderListVO queryAll(OrderListRequest orderListRequest);
 
-    OrderDetailResultResponse queryOrderDetail(String orderId, String userName, Long userId);
+    OrderDetailResultVO queryOrderDetail(String orderId, String userName, Long userId);
 }

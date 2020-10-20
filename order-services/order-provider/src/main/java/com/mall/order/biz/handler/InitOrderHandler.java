@@ -76,7 +76,7 @@ public class InitOrderHandler extends AbstractTransHandler {
             //创建order记录
             Order order = new Order();
             order.setOrderId(orderId);
-            order.setBuyerNick(createOrderContext.getUserName());
+            order.setBuyerNick(createOrderContext.getBuyerNickName());
             order.setPayment(createOrderContext.getOrderTotal());
             order.setStatus(0);
 
@@ -89,7 +89,10 @@ public class InitOrderHandler extends AbstractTransHandler {
             orderMapper.insert(order);
 
             //创建 order_item记录
-            String orderItemId = new GlobalIdGeneratorUtil().getMaxSeq();
+            SimpleDateFormat simpleDate1 = new SimpleDateFormat("yyMMddhhmmss");
+            String prefix1 = simpleDate.format(new Date());
+            String orderItemId = prefix + TradeNoUtils.getTwo();
+            //String orderItemId = new GlobalIdGeneratorUtil().getMaxSeq();
             System.out.println("orderItemId:  " + orderId);
             OrderItem orderItem = new OrderItem();
             orderItem.setId(orderItemId);

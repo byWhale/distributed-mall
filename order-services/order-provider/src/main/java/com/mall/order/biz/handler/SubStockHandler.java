@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -43,9 +44,12 @@ public class SubStockHandler extends AbstractTransHandler {
 		List<CartProductDto> cartProductDtoList = createOrderContext.getCartProductDtoList();
 
 		//检查库存
-		List<CartProductDto> dtoList = createOrderContext.getCartProductDtoList();
-		List<Long> productIds = createOrderContext.getBuyProductIds();
-
+		List<Long> productIds = new ArrayList<>();
+		Long productId = null;
+		for (CartProductDto cartProductDto : cartProductDtoList) {
+			productId = cartProductDto.getProductId();
+			productIds.add(productId);
+		}
 		List<Stock> stockList = stockMapper.findStocksForUpdate(productIds);
 		if (CollectionUtils.isEmpty(stockList)){
 			throw new BizException("查询不到所有库存");

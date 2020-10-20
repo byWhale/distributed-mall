@@ -21,19 +21,19 @@ import java.util.List;
 @Data
 public class CreateOrderRequest extends AbstractRequest{
 
-    private Long userId = 62L;
+    private Long userId;
 
-    private Long addressId = 5L;
+    private Long addressId;
 
-    private String tel = "18782059038";
+    private String tel;
 
-    private String userName = "admin";
+    private String userName;
 
-    private String streetName = "上海青浦区汇联路";
+    private String streetName;
 
-    private BigDecimal orderTotal = new BigDecimal(149);
+    private BigDecimal orderTotal;
 
-    List<CartProductDto> cartProductDtoList = new ArrayList<CartProductDto>(){{add(new CartProductDto());}};//购物车中的商品列表
+    List<CartProductDto> cartProductDtoList;//购物车中的商品列表
 
     private String uniqueKey; //业务唯一id
 
