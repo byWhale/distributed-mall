@@ -1,6 +1,8 @@
 package com.mall.user.services;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mall.commons.tool.exception.ValidateException;
 import com.mall.user.RegisterService;
 import com.mall.user.constants.SysRetCodeConstants;
@@ -10,8 +12,12 @@ import com.mall.user.dal.persistence.MemberMapper;
 import com.mall.user.dal.persistence.UserVerifyMapper;
 import com.mall.user.dto.UserRegisterRequest;
 import com.mall.user.dto.UserRegisterResponse;
+import com.mall.user.mq.UserProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
+import org.apache.rocketmq.client.exception.MQBrokerException;
+import org.apache.rocketmq.client.exception.MQClientException;
+import org.apache.rocketmq.remoting.exception.RemotingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -21,6 +27,7 @@ import org.springframework.util.DigestUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,6 +44,9 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Autowired
     MailSender mailSender;
+
+    @Autowired
+    UserProducer userProducer;
 
     @Override
     public UserRegisterResponse register(UserRegisterRequest userRegisterRequest) {
@@ -83,8 +93,30 @@ public class RegisterServiceImpl implements RegisterService {
             return response;
         }
 
-        //todo 发送邮箱 消息队列
-        sendEmail(uuid, userRegisterRequest);
+        //发送邮箱
+
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("uuid", uuid);
+        map.put("request", userRegisterRequest);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String msg = null;
+        try {
+            msg = objectMapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        try {
+            userProducer.sendEamilMessage(msg);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (RemotingException e) {
+            e.printStackTrace();
+        } catch (MQClientException e) {
+            e.printStackTrace();
+        } catch (MQBrokerException e) {
+            e.printStackTrace();
+        }
+//        sendEmail(uuid, userRegisterRequest);
 
         log.info("用户注册成功，注册参数 request:{}", JSON.toJSONString(userRegisterRequest));
         response.setCode(SysRetCodeConstants.SUCCESS.getCode());
