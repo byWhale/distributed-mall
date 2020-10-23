@@ -8,7 +8,11 @@
   <groupId>com.mall.parent</groupId>
   <artifactId>mall-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <modules>
+        <module>../pay-service/pay-api</module>
+      <module>../pay-service/pay-provider</module>
+    </modules>
+    <packaging>pom</packaging>
   <name>mall-parent</name>
 
   <properties>

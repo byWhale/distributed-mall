@@ -7,6 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="commons-tool" />
+        <module name="pay-provider" />
+        <module name="pay-api" />
         <module name="order-provider" />
         <module name="gateway" />
         <module name="commons-core" />
@@ -16,6 +18,7 @@
         <module name="user-provider" />
         <module name="commons-mq" />
         <module name="comment-provider" />
+        <module name="pay-service" />
         <module name="shopping-api" />
         <module name="commons-lock" />
         <module name="user-api" />
@@ -36,6 +39,9 @@
       <module name="order-api" target="1.8" />
       <module name="order-provider" target="1.8" />
       <module name="order-services" target="1.5" />
+      <module name="pay-api" target="1.8" />
+      <module name="pay-provider" target="1.8" />
+      <module name="pay-service" target="1.8" />
       <module name="shopping-api" target="1.8" />
       <module name="shopping-provider" target="1.8" />
       <module name="shopping-service" target="1.8" />
