@@ -64,14 +64,15 @@ public class InitOrderHandler extends AbstractTransHandler {
 
         ArrayList<Long> buyProductIds = new ArrayList<>();
         ArrayList<String> orderIdList = new ArrayList<>();
+        //订单id
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyMMddhhmmss");
+        String prefix = simpleDate.format(new Date());
+        String orderId = prefix + TradeNoUtils.getTwo();
+        System.out.println("orderId:  " + orderId);
+        orderIdList.add(orderId);
+        createOrderContext.setOrderId(orderId);
 
         for (CartProductDto cartProductDto : cartProductDtoList) {
-            //订单id
-            SimpleDateFormat simpleDate = new SimpleDateFormat("yyMMddhhmmss");
-            String prefix = simpleDate.format(new Date());
-            String orderId = prefix + TradeNoUtils.getTwo();
-            System.out.println("orderId:  " + orderId);
-            orderIdList.add(orderId);
 
             //创建order记录
             Order order = new Order();
