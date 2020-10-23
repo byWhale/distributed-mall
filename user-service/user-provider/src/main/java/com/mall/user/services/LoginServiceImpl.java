@@ -101,7 +101,15 @@ public class LoginServiceImpl implements LoginService {
         }
 
         String token = checkAuthRequest.getToken();
-        String info = JwtTokenUtils.builder().token(token).build().freeJwt();
+        String info = null;
+        try {
+            info = JwtTokenUtils.builder().token(token).build().freeJwt();
+        } catch (ValidateException exception) {
+            exception.printStackTrace();
+            checkAuthResponse.setCode(exception.getErrorCode());
+            checkAuthResponse.setMsg(exception.getMessage());
+            return checkAuthResponse;
+        }
 
         checkAuthResponse.setCode(SysRetCodeConstants.SUCCESS.getCode());
         checkAuthResponse.setMsg(SysRetCodeConstants.SUCCESS.getMessage());

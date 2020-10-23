@@ -43,9 +43,9 @@ public class AddressController {
     public ResponseData addressList(HttpServletRequest request) {
         String userInfo = (String) request.getAttribute(TokenIntercepter.USER_INFO_KEY);
         JSONObject object = JSON.parseObject(userInfo);
-        Long uid = Long.parseLong(object.get("uid").toString());
+        Long id = Long.parseLong(object.get("id").toString());
         AddressListRequest addressListRequest = new AddressListRequest();
-        addressListRequest.setUserId(uid);
+        addressListRequest.setUserId(id);
         AddressListResponse response = addressService.addressList(addressListRequest);
         if (response.getCode().equals(SysRetCodeConstants.SUCCESS.getCode())) {
             return new ResponseUtil().setData(response.getAddressDtos());
@@ -63,8 +63,8 @@ public class AddressController {
         AddAddressRequest request = new AddAddressRequest();
         String userInfo = (String) servletRequest.getAttribute(TokenIntercepter.USER_INFO_KEY);
         JSONObject object = JSON.parseObject(userInfo);
-        Long uid = Long.parseLong(object.get("uid").toString());
-        request.setUserId(uid);
+        Long id = Long.parseLong(object.get("id").toString());
+        request.setUserId(id);
         request.setUserName(form.getUserName());
         request.setStreetName(form.getStreetName());
         request.setTel(form.getTel());
@@ -99,12 +99,12 @@ public class AddressController {
         UpdateAddressRequest request = new UpdateAddressRequest();
         String userInfo = (String) servletRequest.getAttribute(TokenIntercepter.USER_INFO_KEY);
         JSONObject object = JSON.parseObject(userInfo);
-        Long uid = Long.parseLong(object.get("uid").toString());
+        Long id = Long.parseLong(object.get("id").toString());
         request.setAddressId(form.getAddressId());
         request.setIsDefault(form.is_Default() ? 1 : null);
         request.setStreetName(form.getStreetName());
         request.setTel(form.getTel());
-        request.setUserId(uid);
+        request.setUserId(id);
         request.setUserName(form.getUserName());
 
         UpdateAddressResponse response = addressService.updateAddress(request);

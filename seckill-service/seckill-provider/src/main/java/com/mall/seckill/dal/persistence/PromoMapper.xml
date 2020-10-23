@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.seckill.dal.persistence.PromoMapper">
+
+    <resultMap id="seckillListProductMap" type="com.mall.seckill.dto.SeckillListProductDto">
+        <result column="id" property="id"/>
+        <result column="image" property="image"/>
+        <result column="title" property="productName"/>
+        <result column="price" property="price"/>
+        <result column="seckill_price" property="seckillPrice"/>
+        <result column="item_stock" property="inventory"/>
+    </resultMap>
+
+    <update id="decreaseStock">
+        update tb_promo_item set item_stock = item_stock - 1 where ps_id = #{psId} and item_id = #{productId};
+    </update>
+
+    <select id="selectSeckillListProductDto" resultMap="seckillListProductMap">
+        select item.id, item.image, item.title, item.price, promo.seckill_price, promo.item_stock
+            from tb_promo_item promo
+            left join tb_item item on promo.item_id = item.id
+            where promo.ps_id = #{sessionId}
+    </select>
+
+</mapper>

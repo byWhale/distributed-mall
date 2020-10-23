@@ -17,6 +17,7 @@
     <file url="file://$PROJECT_DIR$/mall-commons/commons-lock/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mall-commons/commons-lock/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mall-commons/commons-mq" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-commons/commons-mq/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mall-commons/commons-tool" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mall-commons/commons-tool/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mall-commons/commons-tool/src/main/resources" charset="UTF-8" />
@@ -26,6 +27,9 @@
     <file url="file://$PROJECT_DIR$/order-services/order-provider" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/order-services/order-provider/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/order-services/order-provider/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/seckill-service/seckill-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/seckill-service/seckill-provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/seckill-service/seckill-provider/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/shopping-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/shopping-service/shopping-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/shopping-service/shopping-api/src/main/java" charset="UTF-8" />
