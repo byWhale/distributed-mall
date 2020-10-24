@@ -8,14 +8,17 @@ import com.mall.shopping.constants.ShoppingRetCode;
 import com.mall.shopping.converter.ContentConverter;
 import com.mall.shopping.converter.ProductConverter;
 import com.mall.shopping.dal.entitys.Item;
+import com.mall.shopping.dal.entitys.ItemDesc;
 import com.mall.shopping.dal.entitys.Panel;
 import com.mall.shopping.dal.entitys.PanelContentItem;
+import com.mall.shopping.dal.persistence.ItemDescMapper;
 import com.mall.shopping.dal.persistence.ItemMapper;
 import com.mall.shopping.dal.persistence.PanelContentMapper;
 import com.mall.shopping.dal.persistence.PanelMapper;
 import com.mall.shopping.dto.*;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Arrays;
@@ -28,6 +31,9 @@ public class IProductServiceImpl implements IProductService {
 
     @Autowired
     ItemMapper itemMapper;
+
+    @Autowired
+    ItemDescMapper itemDescMapper;
 
     @Autowired
     PanelMapper panelMapper;
@@ -60,6 +66,7 @@ public class IProductServiceImpl implements IProductService {
             productDetailResponse.setCode(ShoppingRetCode.REQUISITE_PARAMETER_NOT_EXIST.getCode());
             return productDetailResponse;
         }
+
         //赋值
         ProductDetailDto productDetailDto = new ProductDetailDto();
         productDetailDto.setProductId(item.getId());
@@ -67,11 +74,18 @@ public class IProductServiceImpl implements IProductService {
         productDetailDto.setProductName(item.getTitle());
         productDetailDto.setSubTitle(item.getSellPoint());
         productDetailDto.setProductImageBig(item.getImages()[0]);
-        productDetailDto.setDetail("");
         productDetailDto.setProductImageSmall(Arrays.asList(item.getImages()));
+        productDetailDto.setLimitNum(item.getNum().longValue());
         productDetailResponse.setProductDetailDto(productDetailDto);
         productDetailResponse.setCode(ShoppingRetCode.SUCCESS.getCode());
         productDetailResponse.setMsg(ShoppingRetCode.SUCCESS.getMessage());
+
+        Example example = new Example(ItemDesc.class);
+        example.createCriteria().andEqualTo("itemId", request.getId());
+        List<ItemDesc> itemDescs = itemDescMapper.selectByExample(example);
+        if(!CollectionUtils.isEmpty(itemDescs)){
+            productDetailDto.setDetail(itemDescs.get(0).getItemDesc());
+        }
         return productDetailResponse;
     }
 
