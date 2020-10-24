@@ -15,6 +15,9 @@
       <module fileurl="file://$PROJECT_DIR$/order-services/order-api/order-api.iml" filepath="$PROJECT_DIR$/order-services/order-api/order-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/order-services/order-provider/order-provider.iml" filepath="$PROJECT_DIR$/order-services/order-provider/order-provider.iml" />
       <module fileurl="file://$PROJECT_DIR$/order-services/order-services.iml" filepath="$PROJECT_DIR$/order-services/order-services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pay-service/pay-api/pay-api.iml" filepath="$PROJECT_DIR$/pay-service/pay-api/pay-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pay-service/pay-provider/pay-provider.iml" filepath="$PROJECT_DIR$/pay-service/pay-provider/pay-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pay-service/pay-service.iml" filepath="$PROJECT_DIR$/pay-service/pay-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/seckill-service/seckill-api/seckill-api.iml" filepath="$PROJECT_DIR$/seckill-service/seckill-api/seckill-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/seckill-service/seckill-provider/seckill-provider.iml" filepath="$PROJECT_DIR$/seckill-service/seckill-provider/seckill-provider.iml" />
       <module fileurl="file://$PROJECT_DIR$/seckill-service/seckill-service.iml" filepath="$PROJECT_DIR$/seckill-service/seckill-service.iml" />

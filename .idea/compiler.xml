@@ -7,7 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="comment-api" />
+        <module name="pay-service" />
         <module name="seckill-service" />
+        <module name="pay-api" />
         <module name="order-api" />
         <module name="comment-provider" />
         <module name="commons-mq" />
@@ -18,6 +20,7 @@
         <module name="shopping-api" />
         <module name="user-api" />
         <module name="user-sdk" />
+        <module name="pay-provider" />
         <module name="user-provider" />
         <module name="gateway" />
         <module name="commons-core" />
@@ -39,6 +42,9 @@
       <module name="order-api" target="1.8" />
       <module name="order-provider" target="1.8" />
       <module name="order-services" target="1.8" />
+      <module name="pay-api" target="1.8" />
+      <module name="pay-provider" target="1.8" />
+      <module name="pay-service" target="1.8" />
       <module name="seckill-api" target="1.8" />
       <module name="seckill-provider" target="1.8" />
       <module name="seckill-service" target="1.8" />

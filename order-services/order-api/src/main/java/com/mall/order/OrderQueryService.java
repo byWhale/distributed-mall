@@ -10,4 +10,8 @@ public interface OrderQueryService {
     OrderListVO queryAll(OrderListRequest orderListRequest);
 
     OrderDetailResultVO queryOrderDetail(String orderId, String userName, Long userId);
+
+
+    void updateOrderAfterPay(String orderId);
+    void  updateOrderItemAfterPay(String orderId);
 }

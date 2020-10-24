@@ -1,3 +1,9 @@
+#spring.mvc.static-path-pattern: /image/**
+spring:
+  mvc:
+    static-path-pattern: /image/**
+  resources:
+    static-locations: file:F:/Documents/Works@cskaoyan/09 Project3/qr
 dubbo:
   application:
     name: gateway

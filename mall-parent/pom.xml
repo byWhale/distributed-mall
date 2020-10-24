@@ -8,11 +8,6 @@
   <groupId>com.mall.parent</groupId>
   <artifactId>mall-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <modules>
-    <module>../seckill-service/seckill-api</module>
-    <module>seckill-provider</module>
-    <module>../seckill-service/seckill-provider</module>
-  </modules>
   <packaging>pom</packaging>
   <name>mall-parent</name>
 

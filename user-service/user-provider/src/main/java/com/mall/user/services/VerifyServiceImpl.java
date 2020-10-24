@@ -67,4 +67,9 @@ public class VerifyServiceImpl implements IVerifyService {
         userVerifyResponse.setMsg(SysRetCodeConstants.SUCCESS.getMessage());
         return userVerifyResponse;
     }
+
+    @Override
+    public Long getUserIDByToken(String token) {
+        return null;
+    }
 }

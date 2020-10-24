@@ -172,4 +172,14 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 
         return response;
     }
+
+    @Override
+    public void updateOrderAfterPay(String orderId) {
+
+    }
+
+    @Override
+    public void updateOrderItemAfterPay(String orderId) {
+
+    }
 }
